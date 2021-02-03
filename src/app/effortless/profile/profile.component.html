@@ -1,0 +1,18 @@
+<h1>Your Profile</h1>
+
+<div *ngIf="!gds?.whoAmI">
+    You are not currently signed in.
+</div>
+
+<div *ngIf="gds?.whoAmI">
+    <div style="float: right;">{{ gds.whoAmI.EmailAddress }}</div>
+    {{ gds.whoAmI.Name }}
+    <span *ngIf="gds.whoAmI.Role"> ({{gds.whoAmI.Role}})</span>
+
+    <div *ngFor="let role of (gds.whoAmI.Roles || [])">
+        - {{ role }}
+    </div>
+
+
+</div>
+

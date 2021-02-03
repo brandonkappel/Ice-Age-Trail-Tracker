@@ -1,0 +1,4 @@
+# pack-refs with: peeled fully-peeled sorted 
+6143413f3a48d939c2594c7f4a99a8f308897e8d refs/remotes/origin/dependabot/npm_and_yarn/ckeditor-4.12.1
+209e8f958bc362ddf8468ad61774cd2bc72f19b9 refs/remotes/origin/dependabot/npm_and_yarn/tinymce-5.4.1
+05a80f25787089587add0f3ba65c3b9951f5085f refs/remotes/origin/master

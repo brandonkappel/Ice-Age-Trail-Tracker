@@ -1,0 +1,8 @@
+<div style="position: relative">
+    <nb-action *ngIf="!reloading && !loading" class="position-absolute h-100 pr-2" style="right: 0" icon="sync-outline"
+        (click)="reloadHandler(self)">
+    </nb-action>
+    <div id="reloadingSpinner" *ngIf="reloading || loading" [nbSpinner]="true" nbSpinnerStatus="danger" nbSpinnerSize="tiny"
+        nbSpinnerMessage="" class="position-absolute h-100 p-3" style="right: 0">
+    </div>
+</div>

@@ -1,0 +1,66 @@
+{
+  "ShowHidden": false,
+  "ShowAllFiles": false,
+  "CurrentPath": "",
+  "SaveDisabled": false,
+  "SSoTmeProjectId": "aeef2e28-64c4-4305-b6eb-25b51422f07a",
+  "Name": "brandoniceagetrailtracker",
+  "ProjectSettings": [
+    {
+      "ProjectSettingId": "b17e1e72-4004-4f8a-8705-f26d4736dd40",
+      "Name": "amqps",
+      "Value": "amqps://smqPublic:smqPublic@sassyapi-rmq.ssot.me/brandon-iceagetrailtracker"
+    },
+    {
+      "ProjectSettingId": "5ad321b2-3def-4fc0-9e9b-285a6fbbe3ec",
+      "Name": "project-name",
+      "Value": "brandoniceagetrailtracker"
+    }
+  ],
+  "ProjectTranspilers": [
+    {
+      "MatchedTranspiler": {
+        "TranspilerId": "ddeef526-5399-4be1-a676-8c64961e549d",
+        "Name": "SSoT",
+        "Description": "SSoT"
+      },
+      "ProjectTranspilerId": "6635d440-a065-4775-835b-a75b820222f3",
+      "Name": "SSoT",
+      "RelativePath": "",
+      "CommandLine": "effortless/ssot"
+    },
+    {
+      "MatchedTranspiler": {
+        "TranspilerId": "742ad9bf-3931-4c58-a73e-1ea26ab7ad72",
+        "Name": "SmqlToJavascriptRabbitMQ",
+        "Description": "Creates a Javascript client library for Rabbit MQ, given an Smtl file."
+      },
+      "ProjectTranspilerId": "54432df3-d63c-4b26-9ede-58a90e049143",
+      "Name": "SmqlToJavascriptRabbitMQ",
+      "RelativePath": "/src/assets/sassymq",
+      "CommandLine": "sassymq/smql-to-javascript-rabbitmq -i ../../../SassyMQ/Lexicon.smql -p legacy=false -p angular=false"
+    },
+    {
+      "MatchedTranspiler": {
+        "TranspilerId": "be14a6b8-d25e-4f09-b145-1a4b4a911b17",
+        "Name": "ODXMLToEffortlessApiTypescriptEndpoint",
+        "Description": "ODXML To Effortless Api Typescript Endpoint"
+      },
+      "ProjectTranspilerId": "0840aa2c-b6fe-442a-a35a-b51322544359",
+      "Name": "XmlXsltTransform",
+      "RelativePath": "/src/app/effortless/services/eapi-data-services/data-endpoint",
+      "CommandLine": "effortless/odxml-to-effortlessapi-typescript-endpoint -i ../../../../../../ODXML/DataSchema.odxml -o data-endpoint-base.ts -p name=Data -p lower-name=data"
+    },
+    {
+      "MatchedTranspiler": {
+        "TranspilerId": "4b713f03-1d9f-42f2-b02f-e3cdbd237bb3",
+        "Name": "XmlXsltTransform",
+        "Description": "Given an Xml and Xslt file, will process and \"split\" a resulting fileset."
+      },
+      "ProjectTranspilerId": "995c0d60-a9ff-4c28-b5e1-4fde69bd37e5",
+      "Name": "XmlXsltTransform",
+      "RelativePath": "/src/app/effortless/data",
+      "CommandLine": "codee42/xml-xslt-transform -i ../../../../ODXML/DataSchema.odxml -i CreateDataPages.xslt"
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+<nb-card><nb-card-header>
+    <button nbButton ghost nbTooltip="Back" class="float-left"
+      style="padding: 8px; margin: 1px 0px; margin-right: 16px;" (click)="goBack()">
+      <nb-icon style="margin: 0;" icon="arrow-ios-back-outline"></nb-icon><span>Back</span>
+    </button>
+    <h4 style="float: left; margin: 4px 0px;">Comments</h4>
+    <button nbButton ghost nbTooltip="Add Comment" class="float-right" style="margin: 4px 0px" size="tiny"
+      (click)="openAddDialog()" *ngIf="allowAdd">
+      <nb-icon style="margin-right: 4px;" icon="plus-square-outline"></nb-icon><span>Add</span>
+    </button>
+    <reload-widget [self]="this" [loading]="loading" [reloadHandler]="reload"
+      style="float: right; margin-top: 8px; margin-right: 8px;">
+    </reload-widget>
+    <input nbInput type="text" [(ngModel)]="searchText" placeholder="Filter Comments" class="float-right"
+      (change)="filterNow()" style="margin-right: 3.4em; width: 12em;" />
+  </nb-card-header><nb-card-body><nb-list>
+      <nb-list-item *ngFor="let comment of filteredComments" style="padding: 1em;">
+        <p style="float: left; font-weight: 600; margin: 6px 0px; cursor: pointer;"
+          (click)="goToComment(comment.CommentId)">
+          {{ comment?.Name }}
+        </p>
+        <button nbButton nbTooltip="Delete" class="float-right" size="tiny" status="danger"
+          *ngIf="allowDelete" (click)="deleteComment(comment)">
+          <nb-icon icon="trash-2-outline"></nb-icon>
+        </button>
+        <button nbButton nbTooltip="View Comment" class="float-right" style="margin-right: 8px;" size="tiny"
+          (click)="goToComment(comment.CommentId)">
+          <nb-icon icon="external-link"></nb-icon>
+        </button>
+      </nb-list-item>
+    </nb-list></nb-card-body></nb-card>

@@ -1,0 +1,20 @@
+<h1>ej-tic-tac-toe-demo</h1>
+
+<div *ngIf="gds.whoAmI">
+    Welcome, {{ gds.whoAmI.Name || gds.whoAmI.EmailAddress || 'user'}}.
+    <div>
+        <button nbButton routerLink="/effortless/data">See Data</button>
+    </div>
+        
+</div>
+<div *ngIf="!gds.whoAmI">
+    Welcome, Guest.
+    <div>
+        <button nbButton routerLink="/effortless/data">See Data (as a Guest)</button>
+    </div>
+    <div style="padding-top: 2em;">
+        Or <button nbButton size="tiny" routerLink="/auth/login"><nb-icon icon="log-in-outline"></nb-icon> Sign in</button>
+    </div>
+</div>
+
+
