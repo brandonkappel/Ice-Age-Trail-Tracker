@@ -45,6 +45,7 @@ export class AllSegmentDialogComponent implements OnInit {
         "Users",
         "IsTrailSegment",
         "Comments",
+        "SegmentNumber",
       ],
       properties: {
         "AllSegmentId": {
@@ -144,6 +145,16 @@ export class AllSegmentDialogComponent implements OnInit {
           default: "",
           options: {
             hidden: true,
+          },
+          pattern: "^(.*)$"
+        },
+        "SegmentNumber": {
+          $id: "#/properties/SegmentNumber",
+          type: "string",
+          title: "",
+          default: "",
+          options: {
+            hidden: false,
           },
           pattern: "^(.*)$"
         },

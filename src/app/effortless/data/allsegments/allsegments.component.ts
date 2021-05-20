@@ -20,8 +20,8 @@ export class AllSegmentsComponent extends EffortlessComponentBase implements OnI
   allowDelete : boolean = false;
   allowAdd : boolean = false;
 
-  constructor(public gds : GDS, public data : DataEndpoint, public route : ActivatedRoute, 
-            protected menuService : NbMenuService, public router : Router, public dialogService: NbDialogService) { 
+  constructor(public gds : GDS, public data : DataEndpoint, public route : ActivatedRoute,
+            protected menuService : NbMenuService, public router : Router, public dialogService: NbDialogService) {
     super(gds, data, menuService);
     this.safeSubscribe(this.data.onAllSegmentsChange().subscribe(allsegments => {
       this.allsegments = allsegments;
@@ -37,7 +37,7 @@ export class AllSegmentsComponent extends EffortlessComponentBase implements OnI
   }
 
   filterNow() {
-    this.filteredAllSegments = this.allsegments.filter(allsegment => !this.searchText || allsegment.Name.toLowerCase().includes((this.searchText + '').toLowerCase()));      
+    this.filteredAllSegments = this.allsegments.filter(allsegment => !this.searchText || allsegment.Segment.toLowerCase().includes((this.searchText + '').toLowerCase()));
   }
 
   reload(self: this) {
@@ -48,7 +48,7 @@ export class AllSegmentsComponent extends EffortlessComponentBase implements OnI
     this.router.navigateByUrl('effortless/data/allsegments/allsegment/' + id);
   }
 
-  
+
   openAddDialog() {
     this.dialogService.open(AllSegmentDialogComponent, { context: null, autoFocus: false});
   }
@@ -70,7 +70,7 @@ export class AllSegmentsComponent extends EffortlessComponentBase implements OnI
       });
     }
   }
-   
+
   addAllSegment(allsegmentToAdd) {
     var payload = this.gds.createPayload();
     payload.AllSegment = allsegmentToAdd;

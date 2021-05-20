@@ -28,6 +28,8 @@ import { DataEndpoint } from './effortless/services/eapi-data-services/data-endp
 import { NbAuthService, NbAuthJWTToken } from './@core/auth';
 import { AuthGuard } from './auth-guard.service';
 import { Globals } from './app.globals';
+import { ChartsModule, ThemeService } from 'ng2-charts';
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -36,6 +38,7 @@ import { Globals } from './app.globals';
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
+    ChartsModule,
 
     ThemeModule.forRoot(),
 
@@ -50,7 +53,7 @@ import { Globals } from './app.globals';
     }),
     CoreModule.forRoot(),
   ],
-  providers: [GDS, DataEndpoint, AuthGuard, Globals],
+  providers: [GDS, DataEndpoint, AuthGuard, Globals, ThemeService],
   bootstrap: [AppComponent],
 })
 export class AppModule {

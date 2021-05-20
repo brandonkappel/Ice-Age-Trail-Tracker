@@ -1,20 +1,54 @@
-<h1>ej-tic-tac-toe-demo</h1>
-
-<div *ngIf="gds.whoAmI">
-    Welcome, {{ gds.whoAmI.Name || gds.whoAmI.EmailAddress || 'user'}}.
-    <div>
+<nb-card >
+  <nb-card-header>
+    <h1>Ice Age Trail Tracker</h1>
+  </nb-card-header>
+  <nb-card-body>
+    <div *ngIf="gds.whoAmI">
+      <div class="m-4">
+        Welcome, {{ gds.whoAmI.FirstName || gds.whoAmI.EmailAddress || 'user'}}.
+      </div>
+         <!-- <div>
         <button nbButton routerLink="/effortless/data">See Data</button>
+         </div> -->
+      <div *ngIf="allSegments.length > 0" class="container">
+        <div class="row mb-4">
+          <div class="col-md-6 border">
+            There are {{allSegments?.length}} segments on the Ice age trail
+          </div>
+          <div class="col-md-6 border">
+            {{trailSegments?.length}} of the segments are trails and {{roadSegments?.length}} of the segments are roads
+          </div>
+        </div>
+        <div class="row mb-4">
+          <div class="col-md-6 border">
+            You have {{trailSegments?.length - trailsCompleted}} trails to complete and {{roadSegments?.length - (roadsCompleted || 0) }} roads to complete.
+          </div>
+          <div class="col-md-6 border">
+            You have completed {{gds.whoAmI.TrailsCompleted?.length || 0}} Trails and {{gds.whoAmI.RoadsCompleted?.length || 0}}
+            roads
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <ngx-segment-chart [parent]="parent"> </ngx-segment-chart>
+          </div>
+          <div class="col-md-6">
+            <ngx-total-miles-chart [parent]="parent"></ngx-total-miles-chart>
+          </div>
+        </div>
+      </div>
+
     </div>
-        
-</div>
-<div *ngIf="!gds.whoAmI">
-    Welcome, Guest.
-    <div>
+    <div *ngIf="!gds.whoAmI">
+      Welcome, Guest.
+      <div>
         <button nbButton routerLink="/effortless/data">See Data (as a Guest)</button>
+      </div>
+      <div style="padding-top: 2em;">
+        Or <button nbButton size="tiny" routerLink="/auth/login">
+          <nb-icon icon="log-in-outline"></nb-icon> Sign in
+        </button>
+      </div>
     </div>
-    <div style="padding-top: 2em;">
-        Or <button nbButton size="tiny" routerLink="/auth/login"><nb-icon icon="log-in-outline"></nb-icon> Sign in</button>
-    </div>
-</div>
-
-
+  </nb-card-body>
+</nb-card>

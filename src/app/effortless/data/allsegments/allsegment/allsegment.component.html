@@ -1,21 +1,38 @@
-<nb-flip-card><nb-card-front><nb-card><nb-card-header>
-                <button nbButton ghost nbTooltip="Back" class="float-left"
-                    style="padding: 8px; margin: 1px 0px; margin-right: 16px;" (click)="goBack()">
-                    <nb-icon style="margin: 0;" icon="arrow-ios-back-outline"></nb-icon><span>Back</span>
-                </button>
-                <h4 style="float: left; margin: 4px 0px;">{{ (allsegment$ | async)?.Name }} Summary</h4>
-                <button nbButton ghost nbTooltip="Save" class="float-right" style="padding: 8px; margin: 1px 0px;"
-                    (click)="save()" *ngIf="allowSave">
-                    <nb-icon icon="save-outline"></nb-icon><span>Save</span>
-                </button>
-            </nb-card-header><nb-card-body><div id="editor_holder"></div></nb-card-body></nb-card></nb-card-front><nb-card-back><nb-card><nb-card-header>
-                <button nbButton ghost nbTooltip="Back" class="float-left"
-                    style="padding: 8px; margin: 1px 0px; margin-right: 16px;" (click)="goBack()">
-                    <nb-icon style="margin: 0;" icon="arrow-ios-back-outline"></nb-icon><span>Back</span>
-                </button>
-                <h4 style="float: left; margin: 4px 0px;">{{ (allsegment$ | async)?.Name }} Summary</h4>
-                <button nbButton ghost nbTooltip="Save" class="float-right" style="padding: 8px; margin: 1px 0px;"
-                    (click)="save()">
-                    <nb-icon icon="save-outline"></nb-icon><span>Save</span>
-                </button>
-            </nb-card-header><nb-card-body><div id="editor_holder"></div></nb-card-body></nb-card></nb-card-back></nb-flip-card>
+<nb-flip-card>
+  <nb-card-front>
+    <nb-card>
+      <nb-card-header>
+        <button nbButton ghost nbTooltip="Back" class="float-left"
+          style="padding: 8px; margin: 1px 0px; margin-right: 16px;" (click)="goBack()">
+          <nb-icon style="margin: 0;" icon="arrow-ios-back-outline"></nb-icon><span>Back</span>
+        </button>
+        <h4 style="float: left; margin: 4px 0px;">{{ (allsegment$ | async)?.Name }} Summary</h4>
+        <button nbButton ghost nbTooltip="Save" class="float-right" style="padding: 8px; margin: 1px 0px;"
+          (click)="save()" *ngIf="allowSave">
+          <nb-icon icon="save-outline"></nb-icon><span>Save</span>
+        </button>
+      </nb-card-header>
+      <nb-card-body>
+        <div id="editor_holder"></div>
+      </nb-card-body>
+    </nb-card>
+  </nb-card-front>
+  <nb-card-back>
+    <nb-card>
+      <nb-card-header>
+        <button nbButton ghost nbTooltip="Back" class="float-left"
+          style="padding: 8px; margin: 1px 0px; margin-right: 16px;" (click)="goBack()">
+          <nb-icon style="margin: 0;" icon="arrow-ios-back-outline"></nb-icon><span>Back</span>
+        </button>
+        <h4 style="float: left; margin: 4px 0px;">{{ (allsegment$ | async)?.Name }} Summary</h4>
+        <button nbButton ghost nbTooltip="Save" class="float-right" style="padding: 8px; margin: 1px 0px;"
+          (click)="save()">
+          <nb-icon icon="save-outline"></nb-icon><span>Save</span>
+        </button>
+      </nb-card-header>
+      <nb-card-body>
+        <div id="editor_holder"></div>
+      </nb-card-body>
+    </nb-card>
+  </nb-card-back>
+</nb-flip-card>

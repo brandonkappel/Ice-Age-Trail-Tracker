@@ -1,4 +1,5 @@
-<nb-card><nb-card-header>
+<nb-card>
+  <nb-card-header>
     <button nbButton ghost nbTooltip="Back" class="float-left"
       style="padding: 8px; margin: 1px 0px; margin-right: 16px;" (click)="goBack()">
       <nb-icon style="margin: 0;" icon="arrow-ios-back-outline"></nb-icon><span>Back</span>
@@ -13,14 +14,16 @@
     </reload-widget>
     <input nbInput type="text" [(ngModel)]="searchText" placeholder="Filter AllSegments" class="float-right"
       (change)="filterNow()" style="margin-right: 3.4em; width: 12em;" />
-  </nb-card-header><nb-card-body><nb-list>
+  </nb-card-header>
+  <nb-card-body>
+    <nb-list>
       <nb-list-item *ngFor="let allsegment of filteredAllSegments" style="padding: 1em;">
         <p style="float: left; font-weight: 600; margin: 6px 0px; cursor: pointer;"
           (click)="goToAllSegment(allsegment.AllSegmentId)">
           {{ allsegment?.Segment }}
         </p>
-        <button nbButton nbTooltip="Delete" class="float-right" size="tiny" status="danger"
-          *ngIf="allowDelete" (click)="deleteAllSegment(allsegment)">
+        <button nbButton nbTooltip="Delete" class="float-right" size="tiny" status="danger" *ngIf="allowDelete"
+          (click)="deleteAllSegment(allsegment)">
           <nb-icon icon="trash-2-outline"></nb-icon>
         </button>
         <button nbButton nbTooltip="View AllSegment" class="float-right" style="margin-right: 8px;" size="tiny"
@@ -28,4 +31,6 @@
           <nb-icon icon="external-link"></nb-icon>
         </button>
       </nb-list-item>
-    </nb-list></nb-card-body></nb-card>
+    </nb-list>
+  </nb-card-body>
+</nb-card>

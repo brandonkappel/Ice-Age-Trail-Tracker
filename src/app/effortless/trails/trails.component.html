@@ -1,0 +1,29 @@
+<nb-card>
+  <nb-card-header>
+    Trails
+    <nb-select placeholder="Filter Segments" (selectedChange)="filterSegments($event)">
+      <nb-option value="">All Segments</nb-option>
+      <nb-option value="0">Completed</nb-option>
+      <nb-option value="1">Uncomplete</nb-option>
+      <nb-option value="2">West to East</nb-option>
+      <nb-option value="3">East to West</nb-option>
+    </nb-select>
+    <input nbInput type="text" [(ngModel)]="searchText" placeholder="Search Segments" class="float-right"
+    (change)="filterNow()" style="margin-right: 3.4em; width: 12em;" />
+  </nb-card-header>
+  <nb-card-body>
+    <nb-list>
+      <nb-list-item *ngFor="let segment of filteredAllSegments; let i = index">
+        <div >
+          <div (click)="viewTrail(segment.AllSegmentId)" class>
+            {{segment?.Segment }}
+          </div>
+          <div class="center">
+            {{segment.TotalMiles}} Miles
+          </div>
+        </div>
+        <nb-toggle status="success" class="float-right" [checked]="isComplete(segment)" (change)="toggleComplete($event, segment)"></nb-toggle>
+      </nb-list-item>
+    </nb-list>
+  </nb-card-body>
+</nb-card>

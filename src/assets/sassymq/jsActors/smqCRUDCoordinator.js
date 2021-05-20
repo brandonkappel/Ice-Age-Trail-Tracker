@@ -170,6 +170,20 @@ function generateCRUDCoordinatorActor() {
                     }
                 }
             
+                if (smqCRUDCoordinator.onUserGetAllSegments) {
+                    if (msg.headers && (msg.headers.destination.includes('crudcoordinator.crud.user.getallsegments'))) {
+                        var rpayload = smqCRUDCoordinator.onUserGetAllSegments(msg.body, msg);
+                        if (rpayload) smqCRUDCoordinator.sendReply(rpayload, msg);
+                    }
+                }
+            
+                if (smqCRUDCoordinator.onUserUpdateAllSegment) {
+                    if (msg.headers && (msg.headers.destination.includes('crudcoordinator.crud.user.updateallsegment'))) {
+                        var rpayload = smqCRUDCoordinator.onUserUpdateAllSegment(msg.body, msg);
+                        if (rpayload) smqCRUDCoordinator.sendReply(rpayload, msg);
+                    }
+                }
+            
                 if (smqCRUDCoordinator.onAdminAddComment) {
                     if (msg.headers && (msg.headers.destination.includes('crudcoordinator.crud.admin.addcomment'))) {
                         var rpayload = smqCRUDCoordinator.onAdminAddComment(msg.body, msg);
@@ -198,9 +212,25 @@ function generateCRUDCoordinatorActor() {
                     }
                 }
             
+                if (smqCRUDCoordinator.onUserAddComment) {
+                    if (msg.headers && (msg.headers.destination.includes('crudcoordinator.crud.user.addcomment'))) {
+                        var rpayload = smqCRUDCoordinator.onUserAddComment(msg.body, msg);
+                        if (rpayload) smqCRUDCoordinator.sendReply(rpayload, msg);
+                    }
+                }
+            
+                if (smqCRUDCoordinator.onUserGetComments) {
+                    if (msg.headers && (msg.headers.destination.includes('crudcoordinator.crud.user.getcomments'))) {
+                        var rpayload = smqCRUDCoordinator.onUserGetComments(msg.body, msg);
+                        if (rpayload) smqCRUDCoordinator.sendReply(rpayload, msg);
+                    }
+                }
+            
                 // Can also hear what 'Guest' can hear.
                 
                 // Can also hear what 'Admin' can hear.
+                
+                // Can also hear what 'User' can hear.
                 
                
         }
@@ -648,6 +678,93 @@ function generateCRUDCoordinatorActor() {
             var deferred = smqCRUDCoordinator.waitingReply[id] = smqCRUDCoordinator.defer();
             if (smqAdmin.showPingPongs) console.log('Delete Comment - ');
             smqCRUDCoordinator.client.send('/exchange/adminmic/crudcoordinator.crud.admin.deletecomment', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
+            
+            smqCRUDCoordinator.waitFor(id);
+            
+            return deferred.promise;
+        }
+        
+            // Can also say what 'User' can say.
+            
+        
+        smqCRUDCoordinator.waitFor = function (id) {
+            setTimeout(function () {
+                var waiting = smqCRUDCoordinator.waitingReply[id];
+                if (waiting) {
+                    waiting.reject("Timed out waiting for reply");
+                }
+            }, 30000)
+        }
+        
+        smqCRUDCoordinator.createUUID = function() {
+          function s4() {
+            return Math.floor((1 + Math.random()) * 0x10000)
+              .toString(16)
+              .substring(1);
+          }
+          return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+        }
+
+
+        
+        smqCRUDCoordinator.UserGetAllSegments = function() {
+            smqCRUDCoordinator.UserGetAllSegments('{}');
+        }
+
+        smqCRUDCoordinator.UserGetAllSegments = function(payload) {
+            payload = smqCRUDCoordinator.stringifyValue(payload);
+            var id = smqCRUDCoordinator.createUUID();
+            var deferred = smqCRUDCoordinator.waitingReply[id] = smqCRUDCoordinator.defer();
+            if (smqUser.showPingPongs) console.log('Get All Segments - ');
+            smqCRUDCoordinator.client.send('/exchange/usermic/crudcoordinator.crud.user.getallsegments', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
+            
+            smqCRUDCoordinator.waitFor(id);
+            
+            return deferred.promise;
+        }
+        
+        smqCRUDCoordinator.UserUpdateAllSegment = function() {
+            smqCRUDCoordinator.UserUpdateAllSegment('{}');
+        }
+
+        smqCRUDCoordinator.UserUpdateAllSegment = function(payload) {
+            payload = smqCRUDCoordinator.stringifyValue(payload);
+            var id = smqCRUDCoordinator.createUUID();
+            var deferred = smqCRUDCoordinator.waitingReply[id] = smqCRUDCoordinator.defer();
+            if (smqUser.showPingPongs) console.log('Update All Segment - ');
+            smqCRUDCoordinator.client.send('/exchange/usermic/crudcoordinator.crud.user.updateallsegment', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
+            
+            smqCRUDCoordinator.waitFor(id);
+            
+            return deferred.promise;
+        }
+        
+        smqCRUDCoordinator.UserAddComment = function() {
+            smqCRUDCoordinator.UserAddComment('{}');
+        }
+
+        smqCRUDCoordinator.UserAddComment = function(payload) {
+            payload = smqCRUDCoordinator.stringifyValue(payload);
+            var id = smqCRUDCoordinator.createUUID();
+            var deferred = smqCRUDCoordinator.waitingReply[id] = smqCRUDCoordinator.defer();
+            if (smqUser.showPingPongs) console.log('Add Comment - ');
+            smqCRUDCoordinator.client.send('/exchange/usermic/crudcoordinator.crud.user.addcomment', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
+            
+            smqCRUDCoordinator.waitFor(id);
+            
+            return deferred.promise;
+        }
+        
+        smqCRUDCoordinator.UserGetComments = function() {
+            smqCRUDCoordinator.UserGetComments('{}');
+        }
+
+        smqCRUDCoordinator.UserGetComments = function(payload) {
+            payload = smqCRUDCoordinator.stringifyValue(payload);
+            var id = smqCRUDCoordinator.createUUID();
+            var deferred = smqCRUDCoordinator.waitingReply[id] = smqCRUDCoordinator.defer();
+            if (smqUser.showPingPongs) console.log('Get Comments - ');
+            smqCRUDCoordinator.client.send('/exchange/usermic/crudcoordinator.crud.user.getcomments', { "content-type": "text/plain", "reply-to":"/temp-queue/response-queue", "correlation-id":id }, payload);
             
             smqCRUDCoordinator.waitFor(id);
             

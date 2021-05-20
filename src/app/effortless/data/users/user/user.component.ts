@@ -270,8 +270,10 @@ export class UserComponent extends EffortlessComponentBase implements OnInit {
   save() {
     var payload = this.gds.createPayload();
     payload.User = this.editor.getValue();
+    console.error(payload);
     (this.gds.smqUser || this.gds.smqGuest).UpdateUser(payload)
         .then(reply => {
+          console.error(reply)
           this.user  = reply.User;
           if (reply.ErrorMessage) {
             this.toastr.show(reply.ErrorMessage)

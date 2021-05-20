@@ -13,8 +13,25 @@ import { DerivedDataDeclarations } from './data/derived-data-declarations';
 import { DataComponent } from './data/data.component';
 import { JsonEditorModule } from 'ng2-json-editor';
 import { ProfileComponent } from './profile/profile.component';
+import { TrailsComponent } from './trails/trails.component';
+import { ChartsModule } from 'ng2-charts';
+import { SegmentChartComponent } from './page1/segment-chart/segment-chart.component';
+import { TotalMilesChartComponent } from './page1/total-miles-chart/total-miles-chart.component';
+import { TrailComponent } from './trails/trail/trail.component';
 
-let declarations: any[] = [EffortlessComponent, ReloadWidgetComponent, Page1Component, Page2Component, Page3Component, DataComponent, ProfileComponent];
+
+let declarations: any[] = [EffortlessComponent,
+  ReloadWidgetComponent,
+  TrailsComponent,
+  TrailComponent,
+  Page1Component,
+  Page2Component,
+  Page3Component,
+  DataComponent,
+  ProfileComponent,
+  SegmentChartComponent,
+  TotalMilesChartComponent
+];
 DerivedDataDeclarations.derivedDeclarations.forEach(feDeclaration => declarations.push(feDeclaration));
 
 @NgModule({
@@ -36,6 +53,7 @@ DerivedDataDeclarations.derivedDeclarations.forEach(feDeclaration => declaration
     Ng5SliderModule,
     NbSelectModule,
     NbInputModule,
+    ChartsModule,
     NbDialogModule.forChild()
   ],
   entryComponents: DerivedDataDeclarations.derivedEntryComponents

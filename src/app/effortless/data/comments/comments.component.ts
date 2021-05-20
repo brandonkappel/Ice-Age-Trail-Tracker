@@ -20,8 +20,8 @@ export class CommentsComponent extends EffortlessComponentBase implements OnInit
   allowDelete : boolean = false;
   allowAdd : boolean = false;
 
-  constructor(public gds : GDS, public data : DataEndpoint, public route : ActivatedRoute, 
-            protected menuService : NbMenuService, public router : Router, public dialogService: NbDialogService) { 
+  constructor(public gds : GDS, public data : DataEndpoint, public route : ActivatedRoute,
+            protected menuService : NbMenuService, public router : Router, public dialogService: NbDialogService) {
     super(gds, data, menuService);
     this.safeSubscribe(this.data.onCommentsChange().subscribe(comments => {
       this.comments = comments;
@@ -37,7 +37,7 @@ export class CommentsComponent extends EffortlessComponentBase implements OnInit
   }
 
   filterNow() {
-    this.filteredComments = this.comments.filter(comment => !this.searchText || comment.Name.toLowerCase().includes((this.searchText + '').toLowerCase()));      
+    this.filteredComments = this.comments.filter(comment => !this.searchText || comment.Name.toLowerCase().includes((this.searchText + '').toLowerCase()));
   }
 
   reload(self: this) {
@@ -48,7 +48,7 @@ export class CommentsComponent extends EffortlessComponentBase implements OnInit
     this.router.navigateByUrl('effortless/data/comments/comment/' + id);
   }
 
-  
+
   openAddDialog() {
     this.dialogService.open(CommentDialogComponent, { context: null, autoFocus: false});
   }
@@ -70,7 +70,7 @@ export class CommentsComponent extends EffortlessComponentBase implements OnInit
       });
     }
   }
-   
+
   addComment(commentToAdd) {
     var payload = this.gds.createPayload();
     payload.Comment = commentToAdd;

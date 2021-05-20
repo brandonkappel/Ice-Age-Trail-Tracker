@@ -1,0 +1,24 @@
+<nb-card>
+  <nb-card-header>
+    <h1>
+      {{segment?.Segment}}
+    </h1>
+
+  </nb-card-header>
+  <nb-card-body>
+    <div class="row">
+      <div class="col">
+        <span> Trail Miles: </span> {{segment?.TotalMiles}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <span>Comments:</span>
+        <textarea nbInput name="" id="" cols="30" rows="10" [(ngModel)]="segment.Comments"></textarea>
+      </div>
+    </div>
+    <button nbButton ghost nbTooltip="Save" class="float-right" style="padding: 8px; margin: 1px 0px;" (click)="save()">
+      <nb-icon icon="save-outline"></nb-icon><span>Save</span>
+    </button>
+  </nb-card-body>
+</nb-card>

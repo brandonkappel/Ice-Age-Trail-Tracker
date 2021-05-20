@@ -25,22 +25,23 @@ export class AllSegmentComponent extends EffortlessComponentBase implements OnIn
   editor: any;
   private doc: any;
   allowSave : boolean = false;
-  
-  
-  constructor(public gds : GDS, public data : DataEndpoint, public route : ActivatedRoute, 
+
+
+  constructor(public gds : GDS, public data : DataEndpoint, public route : ActivatedRoute,
             protected toastr : NbToastrService, protected menuService : NbMenuService, public router : Router,
-            @Inject(DOCUMENT) document) { 
+            @Inject(DOCUMENT) document) {
     super(gds, data, menuService);
     this.doc = document;
     this.allsegment$ = this.data.onAllSegmentChange();
     this.safeSubscribe(this.allsegment$.subscribe(data => {
       this.allsegment = data
+      console.error(this.allsegment, this.allsegment$)
       if (this.editor) {
         this.editor.setValue(this.allsegment)
       }
       this.loading = false;
     }));
-    
+
     this.config = {};
     this.mySchema = {
       "definitions": {},
@@ -178,10 +179,11 @@ export class AllSegmentComponent extends EffortlessComponentBase implements OnIn
       console.log(this.editor.getValue())
     });
   }
-  
+
   save() {
     var payload = this.gds.createPayload();
     payload.AllSegment = this.editor.getValue();
+    console.error(payload.AllSegment);
     (this.gds.smqUser || this.gds.smqGuest).UpdateAllSegment(payload)
         .then(reply => {
           this.allsegment  = reply.AllSegment;
